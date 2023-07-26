@@ -19,18 +19,19 @@ CREATE TABLE team(
 )ENGINE=InnoDB DEFAULT CHARSET = utf8mb4;
 CREATE TABLE player(
                        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                       team_id INT NOT NULL,
+                       team_id INT,
                        name VARCHAR(256) NOT NULL,
                        position VARCHAR(256) NOT NULL,
                        created_at TIMESTAMP NOT NULL,
                        CONSTRAINT unique_position_per_team UNIQUE (team_id, position)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-CREATE TABLE out_player(
-                           id INT NOT NULL AUTO_INCREMENT primary key,
-                           player_id INT NOT NULL,
-                           reason VARCHAR(256) NOT NULL,
-                           created_at TIMESTAMP NOT NULL
-)ENGINE=InnoDB DEFAULT CHARSET = utf8mb4;
+CREATE TABLE out_player (
+                            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                            player_id INT NOT NULL,
+                            reason VARCHAR(256) NOT NULL,
+                            created_at TIMESTAMP NOT NULL,
+                            CONSTRAINT unique_player_id UNIQUE (player_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 insert into stadium(name,create_at) values('Jamsil',now());
 insert into stadium(name,create_at) values('Changwon',now());
